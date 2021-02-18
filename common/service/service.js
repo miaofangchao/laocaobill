@@ -75,7 +75,7 @@ http.interceptor.response(async (response) => { /* 请求之后拦截器 */
       tip.alert('登录异常')
       // 延时后跳转。否则页面跳转冲突。
       setTimeout(function () {
-        router.replaceAll({ name: 'login' })
+        // router.replaceAll({ name: 'login' })
       }, 300);
       return
     }
@@ -95,7 +95,7 @@ http.interceptor.response(async (response) => { /* 请求之后拦截器 */
           tip.alert('登录已过期')
           // 延时后跳转。否则页面跳转冲突。
           setTimeout(function () {
-            router.replaceAll({ name: 'login' })
+            // router.replaceAll({ name: 'login' })
           }, 300);
         }
         break

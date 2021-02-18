@@ -79,10 +79,14 @@
           class="cu-item arrow animation-slide-bottom"
           :style="[{ animationDelay: '0.1s' }]"
         >
-          <view class="content">
+          <navigator
+            class="content"
+            url="/pages/billManagement/billManagement"
+            hover-class="none"
+          >
             <text class="cuIcon-favorfill text-yellow"></text>
-            <text class="text-grey">收藏</text>
-          </view>
+            <text class="text-grey">账单管理</text>
+          </navigator>
         </view>
         <view
           class="cu-item arrow animation-slide-bottom"

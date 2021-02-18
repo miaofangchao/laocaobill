@@ -90,6 +90,14 @@
 			"path": "pages/alarmDetails/alarmDetails",
 			"style": {},
 			"name":"alarmDetails"
+		},
+		//账单管理
+		{
+			"path": "pages/billManagement/billManagement",
+			"style": {
+				"navigationBarTextStyle": "black"
+			},
+			"name":"billManagement"
 		}
 	],
 	"tabBar":{
@@ -134,7 +142,7 @@
 		"navigationBarBackgroundColor": "#0081ff",
 		"navigationBarTitleText": "monitor",
 		"navigationStyle": "custom",
-		"navigationBarTextStyle": "white"
+		"navigationBarTextStyle": "black"
 	},
 	"usingComponts": true,
 	"condition": { //模式配置，仅开发期间生效

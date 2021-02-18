@@ -131,7 +131,7 @@
 					color: '#ffffff'
 				},
 			]
-			this.$store.dispatch('initWebSocket')
+			// this.$store.dispatch('initWebSocket')
 		},
 		onShow: function() {
 			console.log('App Show')

@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12316659",
+      "name": "搜素",
+      "font_class": "sousu",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    }
+  ]
+}
