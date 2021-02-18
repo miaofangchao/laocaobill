@@ -1,0 +1,21 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1607413646679'); /* IE9 */
+  src: url('iconfont.eot?t=1607413646679#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAARsAAsAAAAACYQAAAQdAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqHEIYVATYCJAMICwYABCAFhG0HLxs6CMgehXGMrNlueCyUyMscPFBu+W+SSTbMhK26UTWkJtB6aJ2tKNTE7iL+TWpnFuZ28YjWhYSnJ8yS1mO72C4aKZEQKZkECKA4WVNbjK9weL7gzQNfiXBAapmQ0xNqFWqArBQIM+H8FtlFHFGLvh4CUBRVmWjd9nhhFCRoNwGIcRHrwSgpL7JGI3AcdsmxsrxYg4VjLDfuAKv93xd/UTMHDCwTNNI9uHoz018Rm5pe2mOQ6cEMFwakk8AEKgMJIlAa7QofViszUUZUoGT9XImAX0en0y692H88ECBsELqsujB9TAxlDxUN/vsSyAcxAEZM6rQl5Du3mydvdje7xC43F3lZ3hw5c/rHJ5LxlNYHbxYS8VTWRtj2oHb2C4+KprbYfF3rrI3eBhWEYC5D1qdHiC03yqpunecfFsHbkL0gtvNxvaZlte9afvyxkWrDodxsPDzAw47mE8kj/TylEkLE8+mNBFRiA3gb8+hUKjtRMqCE7i+KoZjs5k+q8nRfjWKXGlKTWyXJdIa+iUMaLZFcORVPqj5NSMN9JO9cOsA7PDA1uoQRzTv8M2jY26glxg9npQTviycFpnuwb3x0skoUeakvuwBMSsv61B0RT76b57ua66rvo5fDuRPOuqM3n6p+arNOtfpyFPhDvZaTTY34Xb3jjavSvts5r6lyt0urdxyx5qOMH6HZa2/Utbb4Rzv8o78Nr/nOrPt6i/7q4qfndb9qHL80v0r51az+tbjZo1FAOeIwbYcnBaKfE0+aOaTtai11LNmhIQOTvhmBjC1ODcEKbdDQ//fVjzu0zK1lmsW/VlevLscV9uNP2KFdUTsh5TorpqPW+rpf/UDx1qJEN046mQb4A8ycw6WgXd2KulGrVK3xYlTHrFl2yPr/IpS2ozpo16iSqhS1ZY22YlYvqp1mB3W03FaM9ZwkvYnYBOIiSDllhZ6vJVklVO7OTGGAtCe7m96P9zccO5D3sZGt8U9HSwBe/+y+ymdhcXBeT0zAbzZPdoNJp2V3mUMeQ+pkDc03DTGA7uuTlJkgDUrm9K6rM887bQoc8rzZeAZFYjBxKC2X6spgoakNNg7NQFFJu5M1uUyBR0gfUNFiBgTZnQSDTG6CSXZ35VL9Fizy+gdssmeCoo/IdU5N2SKq1RR8ZPiGETVEXhSaJJBpweAJrdx/JEnO194wSZ0C1KhaPdvYYIjJEAdMLazRtMyEYEIBtGVuhr5PMCkhF19ZL5xlkV6tWrDsi3ojKWA0WpGAPMhA3oAR1IAIL4gQ0109Q8v9/AnEIsfnQVKzpGF9A0lIcdYPaqiqOkC+wRC05FI2nkqBxcg0Mkx+pyAJRABoy4YRH1cJMKl8KxfkRUZPuEM5QleNWykIxd709uDurgEUyGUIvImJNXU4BQ+GAQAAAA==') format('woff2'),
+  url('iconfont.woff?t=1607413646679') format('woff'),
+  url('iconfont.ttf?t=1607413646679') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1607413646679#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-saoma:before {
+  content: "\e665";
+}
+
