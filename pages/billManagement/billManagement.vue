@@ -35,6 +35,7 @@
     </view>
     <scroll-view :scroll-y="true" :show-scrollbar="true" class="list-content" :style="{height:scrollHeight}">
       <!-- <mescroll-body
+      class="list-content"
         ref="mescrollRef"
         @init="mescrollInit"
         @down="downCallback"
@@ -42,7 +43,7 @@
       > -->
         <view class="list-item" v-for="(item, index) in dataList" :key="index">
           <view class="icon">
-            <image mode="aspectFit" src="@/static/icon/shangpu.png"></image>
+            <image style="width:68rpx;height：68rpx;" mode="aspectFit" src="@/static/icon/shangpu.png"></image>
           </view>
           <view class="detail">
             <view class="money">
@@ -118,7 +119,7 @@ export default {
   mixins: [MescrollMixin],
   computed: {
     scrollHeight(){
-      return this.windowHeight  + 'rpx'
+      return this.windowHeight - 230  + 'px'
     }
   },
   methods: {
