@@ -62,6 +62,7 @@
 
 <script>
 import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
+
 export default {
   data: () => ({
     expenditure: 20143.41,
