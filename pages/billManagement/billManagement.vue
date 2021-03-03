@@ -18,14 +18,14 @@
       <text class="screen dowm-arrow">筛选</text>
     </view>
     <view class="list-title">
-      <text class="dowm-arrow top">本月</text>
+      <text class="dowm-arrow top">{{ listTitle.month }}</text>
       <view class="bottom">
         <view class="left">
           <text class="expenditure">
-            支出&nbsp;&nbsp;¥ {{ number_format(expenditure, 2) }}
+            支出&nbsp;&nbsp;¥ {{ number_format(listTitle.expenditure, 2) }}
           </text>
           <text class="income"
-            >收入&nbsp;&nbsp;¥ {{ number_format(income, 2) }}</text
+            >收入&nbsp;&nbsp;¥ {{ number_format(listTitle.income, 2) }}</text
           >
         </view>
         <view class="bill">
@@ -33,7 +33,12 @@
         </view>
       </view>
     </view>
-    <scroll-view :scroll-y="true" :show-scrollbar="true" class="list-content" :style="{height:scrollHeight}">
+    <scroll-view
+      :scroll-y="true"
+      :show-scrollbar="true"
+      class="list-content"
+      :style="{ height: scrollHeight }"
+    >
       <!-- <mescroll-body
       class="list-content"
         ref="mescrollRef"
@@ -41,9 +46,14 @@
         @down="downCallback"
         @up="upCallback"
       > -->
-        <view class="list-item" v-for="(item, index) in dataList" :key="index">
+      <view v-for="(item, index) in dataList" :key="index">
+        <view v-if="!item.listTitle" class="list-item">
           <view class="icon">
-            <image style="width:68rpx;height：68rpx;" mode="aspectFit" src="@/static/icon/shangpu.png"></image>
+            <image
+              style="width:68rpx;height：68rpx;"
+              mode="aspectFit"
+              :src="item.imgSrc"
+            ></image>
           </view>
           <view class="detail">
             <view class="money">
@@ -56,8 +66,41 @@
             </view>
           </view>
         </view>
+        <template v-else>
+          <view class="list-title">
+            <text class="dowm-arrow top">{{ item.month }}</text>
+            <view class="bottom">
+              <view class="left">
+                <text class="expenditure">
+                  支出&nbsp;&nbsp;¥ {{ number_format(item.expenditure, 2) }}
+                </text>
+                <text class="income"
+                  >收入&nbsp;&nbsp;¥ {{ number_format(item.income, 2) }}</text
+                >
+              </view>
+              <view class="bill">
+                月账单<text class="iconfont icon-arrow-right"></text>
+              </view>
+            </view>
+          </view>
+        </template>
+      </view>
       <!-- </mescroll-body> -->
     </scroll-view>
+    <view class="page-bottom">
+      <view class="left">
+        <view class="left-top">
+          <span class="iconfont">&#xe719;</span>
+        </view>
+        <view class="left-bottom"> 账单 </view>
+      </view>
+      <view class="right">
+        <view class="right-top">
+          <span class="iconfont">&#xe719;</span>
+        </view>
+        <view class="right-bottom"> 统计 </view>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -66,61 +109,82 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 
 export default {
   data: () => ({
-    expenditure: 20143.41,
-    income: 45123.23,
+    listTitle: {
+      month: "本月",
+      expenditure: 20143.41,
+      income: 45123.23,
+    },
     dataList: [
       {
+        listTitle: false,
         detailMoney: "-30.23",
         place: "扫收钱码付款-给*广建",
         date: "今天",
         time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
       },
       {
+        listTitle: false,
         detailMoney: "-30.23",
         place: "扫收钱码付款-给*广建",
         date: "今天",
         time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
       },
       {
+        listTitle: false,
         detailMoney: "-30.23",
         place: "扫收钱码付款-给*广建",
         date: "今天",
         time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
       },
       {
+        listTitle: false,
         detailMoney: "-30.23",
         place: "扫收钱码付款-给*广建",
         date: "今天",
         time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
       },
       {
-        detailMoney: "-30.23",
-        place: "扫收钱码付款-给*广建",
-        date: "今天",
-        time: "13:43",
+        listTitle: true,
+        month: "2月",
+        expenditure: 20143.41,
+        income: 45123.23,
       },
       {
+        listTitle: false,
         detailMoney: "-30.23",
         place: "扫收钱码付款-给*广建",
-        date: "今天",
+        date: "02-17",
         time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "02-15",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
       },
     ],
-    windowHeight:0
+    windowHeight: 0,
   }),
   created() {
     uni.getSystemInfo({
-      success:(res)=>{
-        console.log(res.windowHeight)
-        this.windowHeight = res.windowHeight
-      }
-    })
+      success: (res) => {
+        console.log(res.windowHeight);
+        this.windowHeight = res.windowHeight;
+      },
+    });
   },
   mixins: [MescrollMixin],
   computed: {
-    scrollHeight(){
-      return this.windowHeight - 230  + 'px'
-    }
+    scrollHeight() {
+      return this.windowHeight - 230 + "px";
+    },
   },
   methods: {
     number_format(number, decimals, dec_point, thousands_sep) {
@@ -277,6 +341,46 @@ export default {
   .list-content {
     width: 100%;
     background: white;
+    .list-title {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20rpx 32rpx;
+      height: 146rpx;
+      background: #f0f0f0;
+      .top {
+        width: 100%;
+        font-weight: bold;
+      }
+      .bottom {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 28rpx;
+        color: #727272;
+        position: relative;
+        .left {
+          .expenditure {
+            .icon-qian {
+              font-size: 28rpx;
+            }
+          }
+          .income {
+            margin-left: 30rpx;
+          }
+        }
+        .bill {
+          display: flex;
+          .icon-arrow-right {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+          }
+        }
+      }
+    }
     .list-item {
       width: 100%;
       height: 220rpx;
@@ -307,6 +411,38 @@ export default {
           font-size: 28rpx;
           color: #727272;
         }
+      }
+    }
+  }
+  .page-bottom {
+    width: 100%;
+    background: #fafafa;
+    position: fixed;
+    bottom: 0;
+    height: 100rpx;
+    border-top: 2rpx solid #f5f5f5;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    .left {
+      .left-top {
+        text-align: center;
+        font-size: 22rpx;
+        color: #1779ff;
+      }
+      .left-bottom {
+        color: #1779ff;
+        font-size: 22rpx;
+      }
+    }
+    .right {
+      .right-top {
+        text-align: center;
+        font-size: 30rpx;
+      }
+      .right-bottom {
+        font-size: 22rpx;
       }
     }
   }

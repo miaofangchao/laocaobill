@@ -41,56 +41,7 @@
 			"path": "pages/common/success",
 			"style": {}
 		},
-		// 机房环境
-		{
-			"path": "pages/roomEnvironment/temperatureHumidity/temperatureHumidity",
-			"style": {},
-			"name":"temperatureHumidity"
-		},
-		{
-			"path": "pages/roomEnvironment/freshAirSystem/freshAirSystem",
-			"style": {},
-			"name":"freshAirSystem"
-		},
-		{
-			"path": "pages/roomEnvironment/precisionAirConditioning/precisionAirConditioning",
-			"style": {},
-			"name":"precisionAirConditioning"
-		},
-		{
-			"path": "pages/roomEnvironment/waterLeakage/waterLeakage",
-			"style": {},
-			"name":"waterLeakage"
-		},
-		// 动力系统
-		{
-			"path": "pages/powerSystem/powerDistribution/powerDistribution",
-			"style": {},
-			"name":"powerDistribution"
-		},
-		{
-			"path": "pages/powerSystem/ups/ups",
-			"style": {},
-			"name":"ups"
-		},
-		// 安防系统
-		{
-			"path": "pages/securitySystem/doorControl/doorControl",
-			"style": {},
-			"name":"doorControl"
-		},
-		// 资产管理
-		{
-			"path": "pages/assetSystem/deviceManagement/deviceManagement",
-			"style": {},
-			"name":"deviceManagement"
-		},
-		// 报警详情
-		{
-			"path": "pages/alarmDetails/alarmDetails",
-			"style": {},
-			"name":"alarmDetails"
-		},
+
 		//账单管理
 		{
 			"path": "pages/billManagement/billManagement",

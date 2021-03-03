@@ -7,139 +7,20 @@
         mode="widthFix"
         class="response"
       ></image>
-      <!-- 中部应用宫格 -->
-      <view class="bg-white" :style="[{ animation: 'show 0.4s 1' }]">
-        <view class="grid margin-bottom col-2">
-          <navigator
-            v-for="(item, index) in middleApps"
-            :key="index"
-            :url="item.path"
-            class="nav-li"
-            navigateTo
-            :style="[{ animation: 'show ' + ((index + 1) * 0.2 + 1) + 's 1' }]"
-            hover-class="none"
-          >
-            <view class="flex align-center">
-              <image
-                :src="'/static/home/' + item.icon"
-                mode="aspectFill"
-                class="line2-icon"
-              ></image>
-              <view class="text-df margin-left-sm"
-                >{{ item.title }} <br />
-                <span class="text-light">{{ item.text }}</span>
-              </view>
-            </view>
-          </navigator>
-        </view>
-      </view>
-      <!-- 机房环境 -->
+      <!-- 账单管理 -->
       <view
         class="cu-bar bg-white solid-bottom"
         :style="[{ animation: 'show 0.6s 1' }]"
       >
         <view class="action">
-          <text class="cuIcon-title text-blue"></text>机房环境
+          <text class="cuIcon-title text-blue"></text>账单管理
         </view>
       </view>
       <view class="bg-white grid col-4 padding-0">
         <view
           class="padding-xs animation-slide-bottom"
           :style="[{ animationDelay: (index + 1) * 0.1 + 's' }]"
-          v-for="(item, index) in roomEnvironmentList"
-          :key="index"
-          @tap="goPage(item.page)"
-        >
-          <view class="padding radius text-center shadow-blur">
-            <view
-              class="cu-avatar sm"
-              :style="{
-                background: 'url(' + item.icon + ') no-repeat',
-                backgroundSize: 'cover',
-              }"
-            >
-            </view>
-            <view class="text-df margin-top">{{ item.title }}</view>
-          </view>
-        </view>
-      </view>
-
-      <!-- 动力系统 -->
-      <view
-        class="cu-bar bg-white solid-bottom margin-top"
-        :style="[{ animation: 'show 0.6s 1' }]"
-      >
-        <view class="action">
-          <text class="cuIcon-title text-blue"></text>动力系统
-        </view>
-      </view>
-      <view class="bg-white grid col-4 padding-0">
-        <view
-          class="padding-xs animation-slide-bottom"
-          :style="[{ animationDelay: (index + 1) * 0.1 + 's' }]"
-          v-for="(item, index) in powerSystem"
-          :key="index"
-          @tap="goPage(item.page)"
-        >
-          <view class="padding radius text-center shadow-blur">
-            <view
-              class="cu-avatar sm"
-              :style="{
-                background: 'url(' + item.icon + ') no-repeat',
-                backgroundSize: 'cover',
-              }"
-            >
-            </view>
-            <view class="text-df margin-top">{{ item.title }}</view>
-          </view>
-        </view>
-      </view>
-
-      <!-- 安防系统 -->
-      <view
-        class="cu-bar bg-white solid-bottom margin-top"
-        :style="[{ animation: 'show 0.6s 1' }]"
-      >
-        <view class="action">
-          <text class="cuIcon-title text-blue"></text>安防系统
-        </view>
-      </view>
-      <view class="bg-white grid col-4 padding-0">
-        <view
-          class="padding-xs animation-slide-bottom"
-          :style="[{ animationDelay: (index + 1) * 0.1 + 's' }]"
-          v-for="(item, index) in securitySystem"
-          :key="index"
-          @tap="goPage(item.page)"
-        >
-          <view class="padding radius text-center shadow-blur">
-            <view
-              class="cu-avatar sm"
-              :style="{
-                background: 'url(' + item.icon + ') no-repeat',
-                backgroundSize: 'cover',
-              }"
-            >
-            </view>
-            <view class="text-df margin-top">{{ item.title }}</view>
-          </view>
-        </view>
-      </view>
-
-      <!-- 资产系统 -->
-      <view
-        class="cu-bar bg-white solid-bottom margin-top"
-        :style="[{ animation: 'show 0.6s 1' }]"
-      >
-        <view class="action">
-          <text class="cuIcon-title text-blue"></text>资产系统
-        </view>
-      </view>
-      <view class="bg-white grid col-4 padding-0">
-        <view
-          class="padding-xs animation-slide-bottom"
-          :style="[{ animationDelay: (index + 1) * 0.1 + 's' }]"
-          v-for="(item, index) in assetSystem"
+          v-for="(item, index) in zhifubaoBillList"
           :key="index"
           @tap="goPage(item.page)"
         >
@@ -162,10 +43,7 @@
 
 <script>
 import {
-  roomEnvironment,
-  powerSystem,
-  securitySystem,
-  assetSystem,
+  zhifubaoBill,
 } from "@/common/util/work.js";
 export default {
   name: "Home",
@@ -173,20 +51,7 @@ export default {
   watch: {},
   data() {
     return {
-      swiperList: [
-        { id: 1, type: "image", url: "/static/banner/banner1.png", link: "" },
-        { id: 2, type: "image", url: "/static/banner/banner2.jpg", link: "" },
-        { id: 3, type: "image", url: "/static/banner/banner3.jpg", link: "" },
-        { id: 4, type: "image", url: "/static/banner/banner4.jpg", link: "" },
-      ],
-      middleApps: [
-        { icon: "line2_icon1.png", title: "机房状态", text: "正常" ,path:''},
-        { icon: "alarm.png", title: "未处理报警", text: "无" , path:'/pages/alarmDetails/alarmDetails' },
-      ],
-      roomEnvironmentList: roomEnvironment.data,
-      powerSystem: powerSystem.data,
-      securitySystem: securitySystem.data,
-      assetSystem: assetSystem.data,
+      zhifubaoBillList: zhifubaoBill.data,
     };
   },
   created() {
