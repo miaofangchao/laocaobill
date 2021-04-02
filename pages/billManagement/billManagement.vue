@@ -17,27 +17,12 @@
       <text>待评价</text>
       <text class="screen dowm-arrow">筛选</text>
     </view>
-    <view class="list-title">
-      <text class="dowm-arrow top">{{ listTitle.month }}</text>
-      <view class="bottom">
-        <view class="left">
-          <text class="expenditure">
-            支出&nbsp;&nbsp;¥ {{ number_format(listTitle.expenditure, 2) }}
-          </text>
-          <text class="income"
-            >收入&nbsp;&nbsp;¥ {{ number_format(listTitle.income, 2) }}</text
-          >
-        </view>
-        <view class="bill">
-          月账单<text class="iconfont icon-arrow-right"></text>
-        </view>
-      </view>
-    </view>
     <scroll-view
       :scroll-y="true"
       :show-scrollbar="true"
       class="list-content"
       :style="{ height: scrollHeight }"
+      @scroll="scrollViewScroll"
     >
       <!-- <mescroll-body
       class="list-content"
@@ -66,8 +51,29 @@
             </view>
           </view>
         </view>
-        <template v-else>
-          <view class="list-title">
+        <template v-else-if="item.listTitle">
+          <view class="month-title">
+            <view class="col-1">
+              <text class="month-number">{{ parseInt(item.month) }}</text>
+              <text class="month-unit">月</text>
+            </view>
+            <view class="col-2">
+              <text class="expenditure">
+                支出&nbsp;&nbsp;¥ {{ number_format(item.expenditure, 2) }}
+              </text>
+              <text class="income"
+                >收入&nbsp;&nbsp;¥ {{ number_format(item.income, 2) }}</text
+              >
+            </view>
+            <view class="col-3">
+              <text>收支分析 > </text>
+            </view>
+          </view>
+          <view
+            class="list-title"
+            v-show="item.isShow"
+            :style="{ top: listContentOffsetTop - 5 + 'px' }"
+          >
             <text class="dowm-arrow top">{{ item.month }}</text>
             <view class="bottom">
               <view class="left">
@@ -90,7 +96,8 @@
     <view class="page-bottom">
       <view class="left">
         <view class="left-top">
-          <span class="iconfont">&#xe719;</span>
+          <image mode="scaleToFill" src="@/static/icon/zhangdan1.png"></image>
+          <!-- <span class="iconfont">&#xe719;</span> -->
         </view>
         <view class="left-bottom"> 账单 </view>
       </view>
@@ -109,12 +116,14 @@ import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
 
 export default {
   data: () => ({
-    listTitle: {
-      month: "本月",
-      expenditure: 20143.41,
-      income: 45123.23,
-    },
     dataList: [
+      {
+        isShow: false,
+        listTitle: true,
+        month: "4月",
+        expenditure: 20143.41,
+        income: 45123.23,
+      },
       {
         listTitle: false,
         detailMoney: "-30.23",
@@ -149,7 +158,7 @@ export default {
       },
       {
         listTitle: true,
-        month: "2月",
+        month: "3月",
         expenditure: 20143.41,
         income: 45123.23,
       },
@@ -169,8 +178,98 @@ export default {
         time: "13:43",
         imgSrc: "/static/icon/shangpu.png",
       },
+      {
+        isShow: false,
+        listTitle: true,
+        month: "2月",
+        expenditure: 20143.41,
+        income: 45123.23,
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "今天",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "今天",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "今天",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "今天",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
+      {
+        isShow: false,
+        listTitle: true,
+        month: "1月",
+        expenditure: 20143.41,
+        income: 45123.23,
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "今天",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "今天",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "今天",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "今天",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
+      {
+        listTitle: false,
+        detailMoney: "-30.23",
+        place: "扫收钱码付款-给*广建",
+        date: "今天",
+        time: "13:43",
+        imgSrc: "/static/icon/shangpu.png",
+      },
     ],
     windowHeight: 0,
+    query: null,
+    listContentOffsetTop: null,
+    monthTitleTop: [],
+    listTitleHeight: 0,
   }),
   created() {
     uni.getSystemInfo({
@@ -180,10 +279,52 @@ export default {
       },
     });
   },
+  mounted() {
+    this.query = uni.createSelectorQuery().in(this);
+    this.query
+      .select(".list-content")
+      .boundingClientRect((res) => {
+        this.listContentOffsetTop = res.top;
+      })
+      .exec();
+
+    this.query
+      .select(".list-title")
+      .boundingClientRect((res) => {
+        this.listTitleHeight = res.height;
+        console.log("list-title", res);
+      })
+      .exec();
+
+    this.query
+      .selectAll(".month-title")
+      .boundingClientRect((res) => {
+        console.log("month-title:", res);
+        res.forEach((item) => {
+          this.monthTitleTop.push(item.top);
+        });
+      })
+      .exec();
+    console.log(this.monthTitleTop);
+  },
   mixins: [MescrollMixin],
   computed: {
     scrollHeight() {
-      return this.windowHeight - 230 + "px";
+      return this.windowHeight - 180 + "px";
+    },
+    listTitleData() {
+      if (this.dataList.length) {
+        return this.dataList.filter((item, index) => {
+          if (item.listTitle) {
+            item.index = index;
+            return true;
+          } else {
+            return false;
+          }
+        });
+      } else {
+        return [];
+      }
     },
   },
   methods: {
@@ -218,6 +359,30 @@ export default {
       }
       return s.join(dec);
     },
+    scrollViewScroll(event) {
+      console.log("scrollView-scrollTop:", event.detail.scrollTop);
+        this.monthTitleTop.forEach((item,index) => {
+          // 获取对应的datalist数据中isShow的索引
+          let dataListIndex = this.listTitleData[index].index
+          // 先判断滚动出去的索引大于1的情况：即第一个title已经滚动出去
+          if(index >= 1 && event.detail.scrollTop >= this.monthTitleTop[index] - this.listContentOffsetTop*1.5){
+            let lastDataListIndex = this.listTitleData[index-1].index
+              this.$set(this.dataList[dataListIndex], "isShow", true);
+              this.$set(this.dataList, dataListIndex, this.dataList[dataListIndex]);
+              this.$set(this.dataList[lastDataListIndex], "isShow", false);
+              this.$set(this.dataList, lastDataListIndex, this.dataList[lastDataListIndex]);
+              return
+          }
+          // 在判断第一个title滚动时：
+          if (event.detail.scrollTop >= this.monthTitleTop[index]) {
+            this.$set(this.dataList[dataListIndex], "isShow", true);
+            this.$set(this.dataList, dataListIndex, this.dataList[dataListIndex]);
+          }else{
+            this.$set(this.dataList[dataListIndex], "isShow", false);
+            this.$set(this.dataList, dataListIndex, this.dataList[dataListIndex]);
+          }
+        });
+    },
   },
   watch: {},
 };
@@ -233,8 +398,7 @@ export default {
 .bill-management {
   font-size: 32rpx;
   padding-top: 80rpx;
-  background: #fff;
-  position: relative;
+  background: white;
   .dowm-arrow {
     position: relative;
     display: flex;
@@ -248,9 +412,6 @@ export default {
       border-right: 10rpx solid transparent;
       margin-left: 12rpx;
     }
-  }
-  .top-fixed {
-    // position: fixed;
   }
   .top {
     display: flex;
@@ -296,29 +457,52 @@ export default {
       color: #1779ff;
       font-weight: bold;
     }
-    .screen {
-    }
   }
-  .list-title {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 20rpx 32rpx;
-    height: 146rpx;
-    background: #f0f0f0;
-    .top {
+  .list-content {
+    width: 100%;
+    background: #f8f8f8;
+    position: relative;
+    .month-title {
+      margin-top: 28rpx;
       width: 100%;
-      font-weight: bold;
-    }
-    .bottom {
-      width: 100%;
+      height: 261rpx;
+      background: url(@/static/icon/bg-title.png);
+      background-size: 100%;
       display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
       align-items: center;
-      justify-content: space-between;
-      font-size: 28rpx;
-      color: #727272;
-      position: relative;
-      .left {
+      padding-top: 25rpx;
+      padding-bottom: 25rpx;
+      padding-left: 32rpx;
+      border-bottom: 2rpx solid #f8f8f8;
+      .col-1,
+      .col-2,
+      .col-3 {
+        width: 100%;
+      }
+      .col-1 {
+        .month-number {
+          font-size: 80rpx;
+          line-height: 70rpx;
+        }
+        .month-unit {
+          margin-left: 12rpx;
+          font-weight: bold;
+        }
+        &::after {
+          content: "";
+          width: 0;
+          height: 0;
+          border-top: 12rpx solid black;
+          border-left: 10rpx solid transparent;
+          border-right: 10rpx solid transparent;
+          margin-left: 12rpx;
+          vertical-align: bottom;
+          line-height: 0rpx;
+        }
+      }
+      .col-2 {
         .expenditure {
           .icon-qian {
             font-size: 28rpx;
@@ -328,27 +512,21 @@ export default {
           margin-left: 30rpx;
         }
       }
-      .bill {
-        display: flex;
-        .icon-arrow-right {
-          display: flex;
-          align-items: center;
-          flex-wrap: nowrap;
-        }
+      .col-3 {
       }
     }
-  }
-  .list-content {
-    width: 100%;
-    background: white;
     .list-title {
+      z-index: 999;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
       padding: 20rpx 32rpx;
       height: 146rpx;
-      background: #f0f0f0;
+      background: #f8f8f8;
       .top {
         width: 100%;
         font-weight: bold;
@@ -385,6 +563,7 @@ export default {
       width: 100%;
       height: 220rpx;
       display: flex;
+      background-color: white;
       .icon {
         width: 132rpx;
         image {
@@ -427,9 +606,18 @@ export default {
     justify-content: space-around;
     .left {
       .left-top {
+        // width: 30rpx;
+        // height: 32rpx;
+        // display: flex;
+        // justify-content: center;
+        // align-content: center;
         text-align: center;
         font-size: 22rpx;
         color: #1779ff;
+        image {
+          width: 30rpx;
+          height: 30rpx;
+        }
       }
       .left-bottom {
         color: #1779ff;
